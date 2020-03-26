@@ -19,7 +19,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   This site is under development. Please be patient.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: hydraplatform
+twitter_username: UMWaterResGroup
 github_username:  hydraplatform
 
 # Build settings
