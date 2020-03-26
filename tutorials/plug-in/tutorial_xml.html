@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>App XML &#8212; Hydra Platform  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="app-xml">
+<span id="xml-example"></span><h1>App XML<a class="headerlink" href="#app-xml" title="Permalink to this headline">¶</a></h1>
+<p>Each app must be accompanied by an XML file defining its basic information and
+its inputs. This XML file can be used by a UI or another plugin to help format
+inputs.</p>
+<p>The &lt;plugin_info&gt; tag is the base.
+Next, <code class="docutils literal notranslate"><span class="pre">&lt;plugin_name&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;plugin_description&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;plugin_dir&gt;</span></code> describe the name
+of the plugin to display, a description of what it does, and the location of the
+actual executable file, if necessary.
+For example</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;plugin_info&gt;</span>
+    <span class="nt">&lt;plugin_name&gt;</span>Test Plugin<span class="nt">&lt;/plugin_name&gt;</span>
+    <span class="nt">&lt;plugin_dir&gt;</span>TestPlugin/trunk/TestPlugin.py<span class="nt">&lt;/plugin_dir&gt;</span>
+    <span class="nt">&lt;plugin_description&gt;</span>Check for the existance of a network in hydra
+            Written by Stephen Knox stephen.knox--at--manchester.ac.uk
+            (c) Copyright 2013, University College London.
+    <span class="nt">&lt;/plugin_description&gt;</span>
+    <span class="nt">&lt;plugin_epilog&gt;</span>For more information visit www.hydraplatform.com<span class="nt">&lt;/plugin_epilog&gt;</span>
+...
+<span class="nt">&lt;/plugin_info&gt;</span>
+</pre></div>
+</div>
+<p>Immediately after this, the app’s inputs are defined.</p>
+<p>There are three category of input: <code class="docutils literal notranslate"><span class="pre">&lt;mandatory_args&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;non_mandatory_args&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;switches&gt;</span></code></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mandatory_args&gt;</span>
+    <span class="nt">&lt;arg&gt;</span>
+        <span class="nt">&lt;name&gt;</span>network_name<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;switch&gt;</span>-t<span class="nt">&lt;/switch&gt;</span>
+        <span class="nt">&lt;multiple&gt;</span>N<span class="nt">&lt;/multiple&gt;</span>
+        <span class="nt">&lt;argtype&gt;</span>string<span class="nt">&lt;/argtype&gt;</span>
+        <span class="nt">&lt;help&gt;</span>The name of the network you are creating<span class="nt">&lt;/help&gt;</span>
+    <span class="nt">&lt;/arg&gt;</span>
+<span class="nt">&lt;/mandatory_args&gt;</span>
+<span class="nt">&lt;non_mandatory_args&gt;</span>
+    <span class="nt">&lt;arg&gt;</span>
+        <span class="nt">&lt;name&gt;</span>num_nodes<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;switch&gt;</span>-n<span class="nt">&lt;/switch&gt;</span>
+        <span class="nt">&lt;multiple&gt;</span>N<span class="nt">&lt;/multiple&gt;</span>
+        <span class="nt">&lt;argtype&gt;</span>integer<span class="nt">&lt;/argtype&gt;</span>
+        <span class="nt">&lt;help&gt;</span>The number of nodes to create in the network<span class="nt">&lt;/help&gt;</span>
+    <span class="nt">&lt;/arg&gt;</span>
+    <span class="nt">&lt;arg&gt;</span>
+        <span class="nt">&lt;name&gt;</span>scenario_name<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;switch&gt;</span>-s<span class="nt">&lt;/switch&gt;</span>
+        <span class="nt">&lt;multiple&gt;</span>N<span class="nt">&lt;/multiple&gt;</span>
+        <span class="nt">&lt;argtype&gt;</span>string<span class="nt">&lt;/argtype&gt;</span>
+        <span class="nt">&lt;help&gt;</span>The name of the scenario to create. If none is specified, a default is used.<span class="nt">&lt;/help&gt;</span>
+    <span class="nt">&lt;/arg&gt;</span>
+<span class="nt">&lt;/non_mandatory_args&gt;</span>
+<span class="nt">&lt;switches&gt;</span>
+    <span class="nt">&lt;arg&gt;</span>
+        <span class="nt">&lt;switch&gt;</span>-d<span class="nt">&lt;/switch&gt;</span>
+        <span class="nt">&lt;name&gt;</span>include-data<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;help&gt;</span>If you want data in your network, use this switch.<span class="nt">&lt;/help&gt;</span>
+    <span class="nt">&lt;/arg&gt;</span>
+<span class="nt">&lt;/switches&gt;</span>
+</pre></div>
+</div>
+<p>Within each category there is an <code class="docutils literal notranslate"><span class="pre">&lt;arg&gt;</span></code>, inside which is defined a <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code>, command line <code class="docutils literal notranslate"><span class="pre">&lt;switch&gt;</span></code>, whether <code class="docutils literal notranslate"><span class="pre">&lt;multiple&gt;</span></code> inputs
+can be expected, what type input can be expected and a help string to describe
+what it is.</p>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Hydra Platform</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=UMWRG&repo=HydraPlatform&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div><h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../devdocs/index.html">Developers documentation</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/tutorials/plug-in/tutorial_xml.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/UMWRG/HydraPlatform" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-71439863-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>
