@@ -32,9 +32,299 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="unit-test-suite-for-hydra-platform">
-<h1>Unit test suite for Hydra Platform<a class="headerlink" href="#unit-test-suite-for-hydra-platform" title="Permalink to this headline">¶</a></h1>
-</div>
+  <div class="section" id="module-tests.test_network">
+<span id="unit-test-suite-for-hydra-platform"></span><h1>Unit test suite for Hydra Platform<a class="headerlink" href="#module-tests.test_network" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="tests.test_network.TestNetwork">
+<em class="property">class </em><code class="sig-prename descclassname">tests.test_network.</code><code class="sig-name descname">TestNetwork</code><a class="headerlink" href="#tests.test_network.TestNetwork" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for network-based functionality</p>
+<dl class="method">
+<dt id="tests.test_network.TestNetwork.test_add_nodes">
+<code class="sig-name descname">test_add_nodes</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">projectmaker</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_network.TestNetwork.test_add_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test add new nodes to network</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_network.TestNetwork.test_consistency_of_update">
+<code class="sig-name descname">test_consistency_of_update</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">network_with_data</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_network.TestNetwork.test_consistency_of_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test to ensure that updating a network which has not changed
+does not cause any changes to the network.
+Procedure:
+1 Create a network.
+2 Immediately update the network without changing it.
+3 Check that the original network and the updated network are identical.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_network.TestNetwork.test_get_all_resource_attributes_in_network">
+<code class="sig-name descname">test_get_all_resource_attributes_in_network</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">network_with_data</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_network.TestNetwork.test_get_all_resource_attributes_in_network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test to retrieve all the resourceattributes relating to the specified
+attribute ID in the network, regardless of what node, link group etc
+they belong to.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_network.TestNetwork.test_get_extents">
+<code class="sig-name descname">test_get_extents</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">network_with_data</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_network.TestNetwork.test_get_extents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extents test: Test that the min X, max X, min Y and max Y of a
+network are retrieved correctly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_network.TestNetwork.test_get_network">
+<code class="sig-name descname">test_get_network</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">networkmaker</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_network.TestNetwork.test_get_network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for the potentially likely case of creating a network with two
+scenarios, then querying for the network without data to identify
+the scenarios, then querying for the network with data but in only
+a select few scenarios.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_network.TestNetwork.test_get_network_with_template">
+<code class="sig-name descname">test_get_network_with_template</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">network_with_data</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_network.TestNetwork.test_get_network_with_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for the potentially likely case of creating a network with two
+scenarios, then querying for the network without data to identify
+the scenarios, then querying for the network with data but in only
+a select few scenarios.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_network.TestNetwork.test_get_resources_of_type">
+<code class="sig-name descname">test_get_resources_of_type</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">network_with_data</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_network.TestNetwork.test_get_resources_of_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for the retrieval of all the resources of a specified
+type within a network.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-tests.test_scenario"></span><span class="target" id="module-tests.test_data"></span><dl class="class">
+<dt id="tests.test_data.TestTimeSeries">
+<em class="property">class </em><code class="sig-prename descclassname">tests.test_data.</code><code class="sig-name descname">TestTimeSeries</code><a class="headerlink" href="#tests.test_data.TestTimeSeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for timeseries-based functionality</p>
+<dl class="method">
+<dt id="tests.test_data.TestTimeSeries.test_relative_dataframe">
+<code class="sig-name descname">test_relative_dataframe</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">network</em>, <em class="sig-param">relative_dataframe</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_data.TestTimeSeries.test_relative_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for relative timeseries for example, x number of hours from hour 0.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tests.test_data.TestiUtilities">
+<em class="property">class </em><code class="sig-prename descclassname">tests.test_data.</code><code class="sig-name descname">TestiUtilities</code><a class="headerlink" href="#tests.test_data.TestiUtilities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test hydra’s internal utilities relating to data transformations etc.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_data.arbitrary_dataframe">
+<code class="sig-prename descclassname">tests.test_data.</code><code class="sig-name descname">arbitrary_dataframe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_data.arbitrary_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a timeseries which has relative timesteps:
+1, 2, 3 as opposed to timestamps</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_data.relative_dataframe">
+<code class="sig-prename descclassname">tests.test_data.</code><code class="sig-name descname">relative_dataframe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_data.relative_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a timeseries which has relative timesteps:
+1, 2, 3 as opposed to timestamps</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_data.seasonal_timeseries">
+<code class="sig-prename descclassname">tests.test_data.</code><code class="sig-name descname">seasonal_timeseries</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_data.seasonal_timeseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a timeseries which has relative timesteps:
+1, 2, 3 as opposed to timestamps</p>
+</dd></dl>
+
+<span class="target" id="module-tests.test_units"></span><dl class="class">
+<dt id="tests.test_units.TestUnits">
+<em class="property">class </em><code class="sig-prename descclassname">tests.test_units.</code><code class="sig-name descname">TestUnits</code><a class="headerlink" href="#tests.test_units.TestUnits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for working with units.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_units.arr_to_vector">
+<code class="sig-prename descclassname">tests.test_units.</code><code class="sig-name descname">arr_to_vector</code><span class="sig-paren">(</span><em class="sig-param">arr</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_units.arr_to_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reshape a multidimensional array to a vector.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_units.array_dim">
+<code class="sig-prename descclassname">tests.test_units.</code><code class="sig-name descname">array_dim</code><span class="sig-paren">(</span><em class="sig-param">arr</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_units.array_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the size of a multidimansional array.</p>
+</dd></dl>
+
+<span class="target" id="module-tests.test_attributes"></span><p>NOTE:
+All the methods that has SKELETON key in the doc, are not yet implemented partially/fully</p>
+<dl class="class">
+<dt id="tests.test_attributes.TestAttribute">
+<em class="property">class </em><code class="sig-prename descclassname">tests.test_attributes.</code><code class="sig-name descname">TestAttribute</code><a class="headerlink" href="#tests.test_attributes.TestAttribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for attribute-based functionality</p>
+<dl class="method">
+<dt id="tests.test_attributes.TestAttribute.test_check_attr_dimension">
+<code class="sig-name descname">test_check_attr_dimension</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">new_dataset</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_attributes.TestAttribute.test_check_attr_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>def check_attr_dimension(attr_id, **kwargs):</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_attributes.TestAttribute.test_get_attributes">
+<code class="sig-name descname">test_get_attributes</code><span class="sig-paren">(</span><em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_attributes.TestAttribute.test_get_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>def get_attributes(**kwargs):</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_attributes.TestAttribute.test_get_template_attributes">
+<code class="sig-name descname">test_get_template_attributes</code><span class="sig-paren">(</span><em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_attributes.TestAttribute.test_get_template_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>SKELETON
+def get_template_attributes(template_id, **kwargs):</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tests.test_attributes.TestAttributeGroups">
+<em class="property">class </em><code class="sig-prename descclassname">tests.test_attributes.</code><code class="sig-name descname">TestAttributeGroups</code><a class="headerlink" href="#tests.test_attributes.TestAttributeGroups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for attribute Groups-based functionality</p>
+<dl class="method">
+<dt id="tests.test_attributes.TestAttributeGroups.test_add_attribute_group_items">
+<code class="sig-name descname">test_add_attribute_group_items</code><span class="sig-paren">(</span><em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_attributes.TestAttributeGroups.test_add_attribute_group_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>SKELETON
+def add_attribute_group_items(attributegroupitems, **kwargs):</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_attributes.TestAttributeGroups.test_exclusive_add_attribute_group_items">
+<code class="sig-name descname">test_exclusive_add_attribute_group_items</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">projectmaker</em>, <em class="sig-param">network_with_data</em>, <em class="sig-param">attributegroupmaker</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_attributes.TestAttributeGroups.test_exclusive_add_attribute_group_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>add attributes to a group that are already in an exclusive group</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_attributes.TestAttributeGroups.test_get_attribute_group">
+<code class="sig-name descname">test_get_attribute_group</code><span class="sig-paren">(</span><em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_attributes.TestAttributeGroups.test_get_attribute_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>SKELETON
+def get_attribute_group(group_id, **kwargs):</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_attributes.TestAttributeGroups.test_get_attribute_item_groups">
+<code class="sig-name descname">test_get_attribute_item_groups</code><span class="sig-paren">(</span><em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_attributes.TestAttributeGroups.test_get_attribute_item_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>SKELETON
+def get_attribute_item_groups(network_id, attr_id, **kwargs):</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_attributes.TestAttributeGroups.test_get_group_attributegroup_items">
+<code class="sig-name descname">test_get_group_attributegroup_items</code><span class="sig-paren">(</span><em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_attributes.TestAttributeGroups.test_get_group_attributegroup_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>SKELETON
+def get_group_attributegroup_items(network_id, group_id, **kwargs):</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_attributes.TestAttributeGroups.test_get_network_attributegroup_items">
+<code class="sig-name descname">test_get_network_attributegroup_items</code><span class="sig-paren">(</span><em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_attributes.TestAttributeGroups.test_get_network_attributegroup_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>SKELETON
+def get_network_attributegroup_items(network_id, **kwargs):</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_attributes.TestAttributeGroups.test_reverse_exclusive_add_attribute_group_items">
+<code class="sig-name descname">test_reverse_exclusive_add_attribute_group_items</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">projectmaker</em>, <em class="sig-param">network_with_data</em>, <em class="sig-param">attributegroupmaker</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_attributes.TestAttributeGroups.test_reverse_exclusive_add_attribute_group_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>add attributes to an exclusive group that are already in another group</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-tests.test_project"></span><dl class="class">
+<dt id="tests.test_project.TestProject">
+<em class="property">class </em><code class="sig-prename descclassname">tests.test_project.</code><code class="sig-name descname">TestProject</code><a class="headerlink" href="#tests.test_project.TestProject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for working with projects in Hydra</p>
+<dl class="method">
+<dt id="tests.test_project.TestProject.test_update">
+<code class="sig-name descname">test_update</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">network_with_data</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_project.TestProject.test_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>The network here is necessary for a scenario with ID 1 to exist.
+Under normal circumstances, scenario 1 will always exist, as it’s an initial requirement
+of the database setup.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-tests.test_templates"></span><dl class="class">
+<dt id="tests.test_templates.TestTemplates">
+<em class="property">class </em><code class="sig-prename descclassname">tests.test_templates.</code><code class="sig-name descname">TestTemplates</code><a class="headerlink" href="#tests.test_templates.TestTemplates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for templates</p>
+<dl class="method">
+<dt id="tests.test_templates.TestTemplates.test_type_compatibility">
+<code class="sig-name descname">test_type_compatibility</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">mock_template</em>, <em class="sig-param">mock_template_copy</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_templates.TestTemplates.test_type_compatibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check function that thests whether two types are compatible – the
+overlapping attributes are specified with the same unit.
+Change the unit associated with an attribute for types in two idencical
+templates, and test. There should be 1 error returned.
+THen test comparison of identical types. No errors should return.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-tests.test_users"></span><dl class="class">
+<dt id="tests.test_users.TestUser">
+<em class="property">class </em><code class="sig-prename descclassname">tests.test_users.</code><code class="sig-name descname">TestUser</code><a class="headerlink" href="#tests.test_users.TestUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A collection of tests of the User part of the DB.</p>
+<dl class="method">
+<dt id="tests.test_users.TestUser.test_add_perm">
+<code class="sig-name descname">test_add_perm</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">client</em>, <em class="sig-param">perm_json_object</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_users.TestUser.test_add_perm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test adding a new permission</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_users.TestUser.test_add_role">
+<code class="sig-name descname">test_add_role</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">client</em>, <em class="sig-param">role_json_object</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_users.TestUser.test_add_role" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test adding a new role</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_users.TestUser.test_add_user">
+<code class="sig-name descname">test_add_user</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">client</em>, <em class="sig-param">user_json_object</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_users.TestUser.test_add_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test adding a new user to the DB</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_users.TestUser.test_get_perms">
+<code class="sig-name descname">test_get_perms</code><span class="sig-paren">(</span><em class="sig-param">client</em>, <em class="sig-param">session</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_users.TestUser.test_get_perms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test fetching all the perms</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_users.TestUser.test_get_username">
+<code class="sig-name descname">test_get_username</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">client</em>, <em class="sig-param">user_json_object</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_users.TestUser.test_get_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test retrieving a username</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_users.TestUser.test_get_users">
+<code class="sig-name descname">test_get_users</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">client</em>, <em class="sig-param">user_json_object</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_users.TestUser.test_get_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test fetching all the users</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_users.TestUser.test_set_role_perm">
+<code class="sig-name descname">test_set_role_perm</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">client</em>, <em class="sig-param">role_json_object</em>, <em class="sig-param">perm_json_object</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_users.TestUser.test_set_role_perm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test assigning a perm to a user</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_users.TestUser.test_set_user_role">
+<code class="sig-name descname">test_set_user_role</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">client</em>, <em class="sig-param">user_json_object</em>, <em class="sig-param">role_json_object</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_users.TestUser.test_set_user_role" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test assigning a role to a user</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tests.test_users.TestUser.test_update_user_password">
+<code class="sig-name descname">test_update_user_password</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">client</em>, <em class="sig-param">user_json_object</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_users.TestUser.test_update_user_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test changing a user’s password</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-tests.test_rules"></span></div>
 
 
           </div>

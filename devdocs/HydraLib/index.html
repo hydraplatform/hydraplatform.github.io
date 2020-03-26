@@ -38,17 +38,322 @@
 <div class="section" id="utility-functions">
 <h2>Utility functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="plug-in-development">
-<h2>Plug-in development<a class="headerlink" href="#plug-in-development" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-hydra_base.lib.units">
+<span id="units-and-dimensions"></span><h2>Units and Dimensions<a class="headerlink" href="#module-hydra_base.lib.units" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="hydra_base.lib.units.add_dimension">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">add_dimension</code><span class="sig-paren">(</span><em class="sig-param">dimension</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.add_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the dimension defined into the object “dimension” to the DB
+If dimension[“project_id”] is None it means that the dimension is global, otherwise is property of a project
+If the dimension exists emits an exception</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.add_unit">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">add_unit</code><span class="sig-paren">(</span><em class="sig-param">unit</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.add_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the unit defined into the object “unit” to the DB
+If unit[“project_id”] is None it means that the unit is global, otherwise is property of a project
+If the unit exists emits an exception</p>
+<p>A minimal example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_unit</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+
+    <span class="n">name</span>      <span class="o">=</span> <span class="s1">&#39;Teaspoons per second&#39;</span><span class="p">,</span>
+    <span class="n">abbreviation</span> <span class="o">=</span> <span class="s1">&#39;tsp s^-1&#39;</span><span class="p">,</span>
+    <span class="n">cf</span>        <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>               <span class="c1"># Constant conversion factor</span>
+    <span class="n">lf</span>        <span class="o">=</span> <span class="mf">1.47867648e-05</span><span class="p">,</span>  <span class="c1"># Linear conversion factor</span>
+    <span class="n">dimension_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">description</span>  <span class="o">=</span> <span class="s1">&#39;A flow of one teaspoon per second.&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">add_unit</span><span class="p">(</span><span class="n">new_unit</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="units-and-dimensions">
-<h2>Units and Dimensions<a class="headerlink" href="#units-and-dimensions" title="Permalink to this headline">¶</a></h2>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.bulk_add_dimensions">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">bulk_add_dimensions</code><span class="sig-paren">(</span><em class="sig-param">dimension_list</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.bulk_add_dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save all the dimensions contained in the passed list.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.bulk_add_units">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">bulk_add_units</code><span class="sig-paren">(</span><em class="sig-param">unit_list</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.bulk_add_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save all the units contained in the passed list, with the name of their dimension.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.check_consistency">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">check_consistency</code><span class="sig-paren">(</span><em class="sig-param">measure_or_unit_abbreviation</em>, <em class="sig-param">dimension</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.check_consistency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether a specified unit is consistent with the physical
+dimension asked for by the attribute or the dataset.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.check_unit_matches_dimension">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">check_unit_matches_dimension</code><span class="sig-paren">(</span><em class="sig-param">unit_id</em>, <em class="sig-param">dimension_id</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.check_unit_matches_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether a specified unit is part of the specified dimension.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>unit_id (int): The ID of the unit to compare with the dimension
+dimension_id (int): The ID of the dimension to check</p>
+</dd>
+<dt>Throws:</dt><dd><p>hydra_base.ValidationError when the unit_id does not match the supplied dimension</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.convert">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">convert</code><span class="sig-paren">(</span><em class="sig-param">values</em>, <em class="sig-param">source_measure_or_unit_abbreviation</em>, <em class="sig-param">target_measure_or_unit_abbreviation</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a value or a list of values from an unit to another one.
+The two units must represent the same physical dimension.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.convert_dataset">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">convert_dataset</code><span class="sig-paren">(</span><em class="sig-param">dataset_id</em>, <em class="sig-param">target_unit_abbreviation</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.convert_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a whole dataset (specified by ‘dataset_id’) to new unit (‘target_unit_abbreviation’).
+Conversion ALWAYS creates a NEW dataset, so function returns the dataset ID of new dataset.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.convert_units">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">convert_units</code><span class="sig-paren">(</span><em class="sig-param">values</em>, <em class="sig-param">source_measure_or_unit_abbreviation</em>, <em class="sig-param">target_measure_or_unit_abbreviation</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.convert_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a value from one unit to another one.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>values: single measure or an array of measures
+source_measure_or_unit_abbreviation: A measure in the source unit, or just the abbreviation of the source unit, from which convert the provided measure value/values
+target_measure_or_unit_abbreviation: A measure in the target unit, or just the abbreviation of the target unit, into which convert the provided measure value/values</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cli</span> <span class="o">=</span> <span class="n">PluginLib</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cli</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">convert_units</span><span class="p">(</span><span class="mf">20.0</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;km&#39;</span><span class="p">)</span>
+<span class="go">0.02</span>
+</pre></div>
 </div>
-<div class="section" id="logging">
-<h2>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Always a list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.delete_dimension">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">delete_dimension</code><span class="sig-paren">(</span><em class="sig-param">dimension_id</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.delete_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a dimension from the DB. Raises and exception if the dimension does not exist</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.delete_unit">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">delete_unit</code><span class="sig-paren">(</span><em class="sig-param">unit_id</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.delete_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a unit from the DB.
+Raises and exception if the unit does not exist</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.exists_dimension">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">exists_dimension</code><span class="sig-paren">(</span><em class="sig-param">dimension_name</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.exists_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a dimension returns True if it exists, False otherwise</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.get_dimension">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">get_dimension</code><span class="sig-paren">(</span><em class="sig-param">dimension_id</em>, <em class="sig-param">do_accept_dimension_id_none=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.get_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a dimension id returns all its data</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.get_dimension_by_name">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">get_dimension_by_name</code><span class="sig-paren">(</span><em class="sig-param">dimension_name</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.get_dimension_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a dimension name returns all its data. Used in convert functions</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.get_dimension_by_unit_id">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">get_dimension_by_unit_id</code><span class="sig-paren">(</span><em class="sig-param">unit_id</em>, <em class="sig-param">do_accept_unit_id_none=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.get_dimension_by_unit_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the physical dimension a given unit id refers to.
+if do_accept_unit_id_none is False, it raises an exception if unit_id is not valid or None
+if do_accept_unit_id_none is True, and unit_id is None, the function returns a Dimension with id None (unit_id can be none in some cases)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.get_dimension_by_unit_measure_or_abbreviation">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">get_dimension_by_unit_measure_or_abbreviation</code><span class="sig-paren">(</span><em class="sig-param">measure_or_unit_abbreviation</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.get_dimension_by_unit_measure_or_abbreviation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the physical dimension a given unit abbreviation of a measure, or the measure itself, refers to.
+The search key is the abbreviation or the full measure</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.get_dimensions">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">get_dimensions</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.get_dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of objects describing all the dimensions with all the units.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.get_empty_dimension">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">get_empty_dimension</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.get_empty_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dimension object initialized with empty values</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.get_unit">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">get_unit</code><span class="sig-paren">(</span><em class="sig-param">unit_id</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.get_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a single unit</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.get_unit_by_abbreviation">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">get_unit_by_abbreviation</code><span class="sig-paren">(</span><em class="sig-param">unit_abbreviation</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.get_unit_by_abbreviation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a single unit by abbreviation. Used as utility function to resolve string to id</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.get_units">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">get_units</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.get_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all the units</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.is_global_dimension">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">is_global_dimension</code><span class="sig-paren">(</span><em class="sig-param">dimension_id</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.is_global_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the dimension is Global, False is it is assigned to a project</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.is_global_unit">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">is_global_unit</code><span class="sig-paren">(</span><em class="sig-param">unit_id</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.is_global_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the Unit is Global, False is it is assigned to a project
+‘unit’ is a Unit object</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="hydra_base.lib.units.log">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">log</code><em class="property"> = &lt;Logger hydra_base.lib.units (INFO)&gt;</em><a class="headerlink" href="#hydra_base.lib.units.log" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>DIMENSION FUNCTIONS - VARIOUS</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.update_dimension">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">update_dimension</code><span class="sig-paren">(</span><em class="sig-param">dimension</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.update_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a dimension in the DB.
+Raises and exception if the dimension does not exist.
+The key is ALWAYS the name and the name itself is not modificable</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.update_unit">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">update_unit</code><span class="sig-paren">(</span><em class="sig-param">unit</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.update_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a unit in the DB.
+Raises and exception if the unit does not exist</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hydra_base.lib.units.validate_resource_attributes">
+<code class="sig-prename descclassname">hydra_base.lib.units.</code><code class="sig-name descname">validate_resource_attributes</code><span class="sig-paren">(</span><em class="sig-param">resource</em>, <em class="sig-param">attributes</em>, <em class="sig-param">template</em>, <em class="sig-param">check_unit=True</em>, <em class="sig-param">exact_match=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.lib.units.validate_resource_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate that the resource provided matches the template.
+Only passes if the resource contains ONLY the attributes specified
+in the template.</p>
+<p>The template should take the form of a dictionary, as should the
+resources.</p>
+<dl class="simple">
+<dt><em>check_unit</em>: Makes sure that if a unit is specified in the template, it</dt><dd><p>is the same in the data</p>
+</dd>
+<dt><em>exact_match</em>: Ensures that all the attributes in the template are in</dt><dd><p>the data also. By default this is false, meaning a subset
+of the template attributes may be specified in the data.
+An attribute specified in the data <em>must</em> be defined in
+the template.</p>
+</dd>
+</dl>
+<p>&#64;returns a list of error messages. An empty list indicates no
+errors were found.</p>
+</dd></dl>
+
 </div>
-<div class="section" id="error-classes">
-<h2>Error classes<a class="headerlink" href="#error-classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-hydra_base.hydra_logging">
+<span id="logging"></span><h2>Logging<a class="headerlink" href="#module-hydra_base.hydra_logging" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="hydra_base.hydra_logging.ColorizingStreamHandler">
+<em class="property">class </em><code class="sig-prename descclassname">hydra_base.hydra_logging.</code><code class="sig-name descname">ColorizingStreamHandler</code><span class="sig-paren">(</span><em class="sig-param">stream=None</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.hydra_logging.ColorizingStreamHandler" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="hydra_base.hydra_logging.ColorizingStreamHandler.emit">
+<code class="sig-name descname">emit</code><span class="sig-paren">(</span><em class="sig-param">record</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.hydra_logging.ColorizingStreamHandler.emit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Emit a record.</p>
+<p>If a formatter is specified, it is used to format the record.
+The record is then written to the stream with a trailing newline.  If
+exception information is present, it is formatted using
+traceback.print_exception and appended to the stream.  If the stream
+has an ‘encoding’ attribute, it is used to determine how to do the
+output to the stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hydra_base.hydra_logging.ColorizingStreamHandler.format">
+<code class="sig-name descname">format</code><span class="sig-paren">(</span><em class="sig-param">record</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.hydra_logging.ColorizingStreamHandler.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format the specified record.</p>
+<p>If a formatter is set, use it. Otherwise, use the default formatter
+for the module.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-hydra_base.exceptions">
+<span id="error-classes"></span><h2>Error classes<a class="headerlink" href="#module-hydra_base.exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="hydra_base.exceptions.DataError">
+<em class="property">exception </em><code class="sig-prename descclassname">hydra_base.exceptions.</code><code class="sig-name descname">DataError</code><span class="sig-paren">(</span><em class="sig-param">message='A hydra error has occurred'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.exceptions.DataError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hydra_base.exceptions.HydraAttributeError">
+<em class="property">exception </em><code class="sig-prename descclassname">hydra_base.exceptions.</code><code class="sig-name descname">HydraAttributeError</code><span class="sig-paren">(</span><em class="sig-param">message='A hydra error has occurred'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.exceptions.HydraAttributeError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hydra_base.exceptions.HydraDBError">
+<em class="property">exception </em><code class="sig-prename descclassname">hydra_base.exceptions.</code><code class="sig-name descname">HydraDBError</code><span class="sig-paren">(</span><em class="sig-param">message='A hydra error has occurred'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.exceptions.HydraDBError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hydra_base.exceptions.HydraError">
+<em class="property">exception </em><code class="sig-prename descclassname">hydra_base.exceptions.</code><code class="sig-name descname">HydraError</code><span class="sig-paren">(</span><em class="sig-param">message='A hydra error has occurred'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.exceptions.HydraError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hydra_base.exceptions.HydraPluginError">
+<em class="property">exception </em><code class="sig-prename descclassname">hydra_base.exceptions.</code><code class="sig-name descname">HydraPluginError</code><span class="sig-paren">(</span><em class="sig-param">message='A hydra error has occurred'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.exceptions.HydraPluginError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hydra_base.exceptions.OwnershipError">
+<em class="property">exception </em><code class="sig-prename descclassname">hydra_base.exceptions.</code><code class="sig-name descname">OwnershipError</code><span class="sig-paren">(</span><em class="sig-param">message='A hydra error has occurred'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.exceptions.OwnershipError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hydra_base.exceptions.PermissionError">
+<em class="property">exception </em><code class="sig-prename descclassname">hydra_base.exceptions.</code><code class="sig-name descname">PermissionError</code><span class="sig-paren">(</span><em class="sig-param">message='A hydra error has occurred'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.exceptions.PermissionError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hydra_base.exceptions.ResourceNotFoundError">
+<em class="property">exception </em><code class="sig-prename descclassname">hydra_base.exceptions.</code><code class="sig-name descname">ResourceNotFoundError</code><span class="sig-paren">(</span><em class="sig-param">message='A hydra error has occurred'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.exceptions.ResourceNotFoundError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hydra_base.exceptions.ValidationError">
+<em class="property">exception </em><code class="sig-prename descclassname">hydra_base.exceptions.</code><code class="sig-name descname">ValidationError</code><span class="sig-paren">(</span><em class="sig-param">message='A hydra error has occurred'</em><span class="sig-paren">)</span><a class="headerlink" href="#hydra_base.exceptions.ValidationError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 </div>
 
@@ -96,10 +401,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../HydraServer/index.html#api-functions">API functions</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Hydra utility library</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#utility-functions">Utility functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#plug-in-development">Plug-in development</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#units-and-dimensions">Units and Dimensions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#logging">Logging</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#error-classes">Error classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hydra_base.lib.units">Units and Dimensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hydra_base.hydra_logging">Logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hydra_base.exceptions">Error classes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../HydraServer/unittests.html">Unit test suite for Hydra Platform</a></li>
